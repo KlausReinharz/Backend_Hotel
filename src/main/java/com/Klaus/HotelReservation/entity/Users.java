@@ -1,5 +1,6 @@
 package com.Klaus.HotelReservation.entity;
 
+import com.Klaus.HotelReservation.dto.UserDto;
 import com.Klaus.HotelReservation.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -77,5 +78,14 @@ lo que significa que todas las cuentas están habilitadas por defecto.*/
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public UserDto getUserDto(){
+        UserDto dto = new UserDto();
+        dto.setId(id);
+        dto.setName(name);
+        dto.setEmail(email);
+        dto.setUserRole(userRole);
+        return dto;
     }
 }
