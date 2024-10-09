@@ -7,6 +7,7 @@ import com.Klaus.HotelReservation.dto.UserDto;
 import com.Klaus.HotelReservation.entity.Users;
 import com.Klaus.HotelReservation.repository.UserRepository;
 import com.Klaus.HotelReservation.service.auth.AuthService;
+import com.Klaus.HotelReservation.service.jwt.UserService;
 import com.Klaus.HotelReservation.util.JwtUtil;
 import jakarta.persistence.EntityExistsException;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +37,8 @@ public class AuthController {
 
     private final JwtUtil jwtUtil;
 
+    private final UserService userService;
+
     @PostMapping("/signup")
     public ResponseEntity<?> signupUser(@RequestBody SignupRequest signupRequest){
         try{
@@ -59,7 +62,7 @@ public class AuthController {
             throw new BadCredentialsException("Incorrect username or password.");
         }
 
-        final UserDetails userDetails = null;
+        final UserDetails userDetails = userService.userDetailsService().loadUserByUsername(authenticationRequest.getEmail());
         Optional<Users> optionalUsers = userRepository.findFirstByEmail(userDetails.getUsername());
         final String jwt = jwtUtil.generateToken(userDetails);
 
