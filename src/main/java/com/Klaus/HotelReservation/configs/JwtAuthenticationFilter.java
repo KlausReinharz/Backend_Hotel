@@ -2,6 +2,7 @@ package com.Klaus.HotelReservation.configs;
 
 import com.Klaus.HotelReservation.service.jwt.UserService;
 import com.Klaus.HotelReservation.util.JwtUtil;
+import io.micrometer.common.lang.NonNullApi;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
+@NonNullApi
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
