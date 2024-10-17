@@ -19,6 +19,11 @@ public class BookingController {
 
     @PostMapping("/book")
     public ResponseEntity<?>postBooking(@RequestBody ReservationDto reservationDto){
+
+        if (reservationDto.getUserId() == null) {
+            throw new IllegalArgumentException("User ID cannot be null");
+        }
+
         boolean success = bookingService.postReservation(reservationDto);
 
         if(success){

@@ -24,7 +24,7 @@ public class BookingServiceImpl implements BookingService {
 
 
     public boolean postReservation(ReservationDto reservationDto){
-        Optional<Users>optionalUsers= userRepository.findById(reservationDto.getUsersId());
+        Optional<Users>optionalUsers= userRepository.findById(reservationDto.getUserId());
         Optional<Room> optionalRoom = roomRepository.findById(reservationDto.getRoomId());
 
         if(optionalRoom.isPresent() && optionalUsers.isPresent()){

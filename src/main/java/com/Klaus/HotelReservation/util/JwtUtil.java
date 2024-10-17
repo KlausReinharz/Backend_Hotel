@@ -58,7 +58,7 @@ public class JwtUtil {
     }
 
     private Key getSigningKey(){
-        byte[] keyBytes = Decoders.BASE64.decode("413F4428472B46250655368566D5970337336739799244226452948404D6351");
+        byte[] keyBytes = Decoders.BASE64.decode("413F4428472B4B6250655368566D59703373367963979244226452948404D6351");
         return Keys.hmacShaKeyFor(keyBytes);
     }
 }
